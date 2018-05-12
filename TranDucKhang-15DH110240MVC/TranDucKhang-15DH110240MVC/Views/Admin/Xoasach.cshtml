@@ -1,0 +1,97 @@
+﻿@model TranDucKhang_15DH110240MVC.Models.SACH
+
+@{
+    ViewBag.Title = "Xoasach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    #BoldIt{
+        font-weight: 900;
+    }
+</style>
+<h2>XÁC ĐỊNH THÔNG TIN SÁCH CẦN XÓA</h2>
+
+<h3>Bạn xác định xóa quyển sách này?</h3>
+<div>
+    <h4>SACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <table>
+            <tr>
+                <td><span id="BoldIt">Tên sách: </span> </td>
+                <td>
+                    <dt>
+                        @Html.DisplayFor(model => model.Tensach)
+                    </dt>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Đơn giá:</span></td>
+                <td>
+                    <dt>
+                       @String.Format("{0:0,0}", Model.Dongia) VNĐ
+                    </dt>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Mô tả:</span></td>
+                <td>
+                    <dt>
+                            @Html.DisplayFor(model => model.Mota)
+                    </dt>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Ảnh bìa:</span></td>
+                <td>
+                    <dd>
+                        <img src="@Url.Content("~/Hinhsanpham/"+ Model.Hinhminhhoa)" width="120px" />
+                    </dd>
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Ngày cập nhật:</span></td>
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Số lượng tồn:</span></td>
+                <td>
+                    @Html.DisplayFor(model => model.Soluongban)
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Chủ đề:</span></td>
+                <td>
+                    @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+                </td>
+            </tr>
+            <tr>
+                <td><span id="BoldIt">Nhà xuất bản:</span></td>
+                <td>
+                    @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+                </td>
+            </tr>
+        </table>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Donvitinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Donvitinh)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="XÓA" class="btn btn-default" /> |
+            @Html.ActionLink("TRỞ VỀ", "Sach")
+        </div>
+    }
+</div>
